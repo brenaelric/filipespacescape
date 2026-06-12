@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <!-- Meta tags cruciais para compatibilidade e instalação no iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Filipe Space">
+    
+    <!-- Ícone que aparecerá no ecrã de início do iPhone (Pixel art do Filipe em SVG) -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='180' height='180' style='background:%230b0914;'><rect x='4' y='0' width='6' height='1' fill='%23251a15'/><rect x='3' y='1' width='8' height='1' fill='%23251a15'/><rect x='2' y='2' width='10' height='1' fill='%23251a15'/><rect x='2' y='3' width='3' height='1' fill='%23251a15'/><rect x='5' y='3' width='6' height='1' fill='%23fcd5b5'/><rect x='11' y='3' width='2' height='1' fill='%23251a15'/><rect x='1' y='4' width='2' height='1' fill='%23251a15'/><rect x='3' y='4' width='9' height='1' fill='%23fcd5b5'/><rect x='12' y='4' width='2' height='1' fill='%23251a15'/><rect x='1' y='5' width='2' height='1' fill='%23251a15'/><rect x='3' y='5' width='1' height='1' fill='%23fcd5b5'/><rect x='4' y='5' width='2' height='1' fill='%23111111'/><rect x='6' y='5' width='1' height='1' fill='%23fcd5b5'/><rect x='7' y='5' width='2' height='1' fill='%23111111'/><rect x='9' y='5' width='1' height='1' fill='%23fcd5b5'/><rect x='10' y='5' width='2' height='1' fill='%23251a15'/><rect x='1' y='6' width='1' height='1' fill='%23251a15'/><rect x='2' y='6' width='2' height='1' fill='%23fcd5b5'/><rect x='4' y='6' width='1' height='1' fill='%23111111'/><rect x='5' y='6' width='1' height='1' fill='%23ffffff'/><rect x='6' y='6' width='1' height='1' fill='%23111111'/><rect x='7' y='6' width='1' height='1' fill='%23fcd5b5'/><rect x='8' y='6' width='1' height='1' fill='%23111111'/><rect x='9' y='6' width='1' height='1' fill='%23ffffff'/><rect x='10' y='6' width='1' height='1' fill='%23111111'/><rect x='11' y='6' width='2' height='1' fill='%23fcd5b5'/><rect x='13' y='6' width='1' height='1' fill='%23251a15'/><rect x='1' y='7' width='1' height='1' fill='%23251a15'/><rect x='2' y='7' width='11' height='1' fill='%23fcd5b5'/><rect x='13' y='7' width='1' height='1' fill='%23251a15'/><rect x='1' y='8' width='1' height='1' fill='%23251a15'/><rect x='2' y='8' width='3' height='1' fill='%23fcd5b5'/><rect x='5' y='8' width='1' height='1' fill='%23ffccd5'/><rect x='6' y='8' width='3' height='1' fill='%23fcd5b5'/><rect x='9' y='8' width='1' height='1' fill='%23ffccd5'/><rect x='10' y='8' width='2' height='1' fill='%23fcd5b5'/><rect x='12' y='8' width='2' height='1' fill='%23251a15'/><rect x='1' y='9' width='1' height='1' fill='%23251a15'/><rect x='2' y='9' width='6' height='1' fill='%23fcd5b5'/><rect x='8' y='9' width='2' height='1' fill='%23251a15'/><rect x='10' y='9' width='2' height='1' fill='%23fcd5b5'/><rect x='12' y='9' width='2' height='1' fill='%23251a15'/><rect x='2' y='10' width='1' height='1' fill='%23251a15'/><rect x='3' y='10' width='2' height='1' fill='%23fcd5b5'/><rect x='5' y='10' width='6' height='1' fill='%23251a15'/><rect x='11' y='10' width='2' height='1' fill='%23fcd5b5'/><rect x='13' y='10' width='1' height='1' fill='%23251a15'/><rect x='3' y='11' width='10' height='1' fill='%23251a15'/><rect x='4' y='12' width='2' height='1' fill='%231a1a1d'/><rect x='6' y='12' width='4' height='1' fill='%23e63946'/><rect x='10' y='12' width='2' height='1' fill='%231a1a1d'/><rect x='3' y='13' width='4' height='1' fill='%231a1a1d'/><rect x='7' y='13' width='4' height='1' fill='%23e63946'/><rect x='11' y='13' width='2' height='1' fill='%231a1a1d'/><rect x='2' y='14' width='5' height='1' fill='%231a1a1d'/><rect x='7' y='14' width='4' height='1' fill='%23e63946'/><rect x='11' y='14' width='3' height='1' fill='%231a1a1d'/><rect x='2' y='15' width='12' height='1' fill='%231a1a1d'/></svg>">
+
+    <title>Filipe: Space Escape</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@400;600;800&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0b0914;
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+            overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: none;
+            /* Evita rolamento elástico e comportamentos estranhos no iOS Safari */
+            position: fixed;
+            width: 100%;
+            height: 100%;
+        }
+
+        .pixel-font {
+            font-family: 'Press Start 2P', monospace;
+        }
+
+        /* Charme retro de ecrã CRT */
+        .crt::after {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 3px, 3px 100%;
+            pointer-events: none;
+            z-index: 99;
+        }
+
+        .neon-text-pink {
+            text-shadow: 0 0 10px rgba(244, 114, 182, 0.8), 0 0 20px rgba(244, 114, 182, 0.4);
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.12); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.12); }
+            70% { transform: scale(1); }
+        }
+        .animate-heart {
+            animation: heartbeat 1.4s infinite;
+        }
+
+        canvas {
+            display: block;
+            image-rendering: pixelated;
+        }
+    </style>
+</head>
+<body class="crt bg-[#080711] flex flex-col items-center justify-center h-screen w-screen relative">
+
+    <!-- ÁREA DO JOGO -->
+    <div id="game-container" class="relative w-full h-full max-w-md bg-black overflow-hidden flex flex-col justify-between shadow-2xl md:rounded-3xl md:border-4 md:border-pink-500/30">
+        
+        <!-- Tela de Carregamento / Início -->
+        <div id="screen-start" class="absolute inset-0 z-20 flex flex-col justify-between p-6 bg-gradient-to-b from-[#0e0a1f] to-[#05030a] text-center">
+            <div class="mt-8">
+                <p class="text-pink-400 pixel-font text-[10px] tracking-widest mb-2 uppercase">Missão de Amor Espacial</p>
+                <h1 class="text-3xl font-extrabold tracking-tight text-white uppercase mt-1">
+                    FILIPE<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-pink-500 to-purple-500 neon-text-pink">SPACE ESCAPE</span>
+                </h1>
+            </div>
+
+            <!-- Avatar -->
+            <div class="flex flex-col items-center justify-center my-4">
+                <div class="p-3 bg-pink-500/10 rounded-2xl border border-pink-500/20 mb-2">
+                    <canvas id="avatar-canvas" width="128" height="128" class="w-24 h-24"></canvas>
+                </div>
+                <p class="text-sm text-gray-300 italic">"Desvia dos perigos cósmicos para chegares ao teu destino!"</p>
+            </div>
+
+            <!-- Botões de Ação com Testador de Som para Garantia -->
+            <div class="mb-8 flex flex-col gap-3 px-4">
+                <button id="btn-start" class="w-full bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-white font-bold py-4 px-6 rounded-2xl text-lg transition duration-200 shadow-lg transform active:scale-95 border-b-4 border-red-800">
+                    PILOTAR NAVE (JOGAR)
+                </button>
+                
+                <button id="btn-test-sound" class="w-full bg-slate-800/80 hover:bg-slate-700 text-pink-300 font-semibold py-2.5 px-4 rounded-xl text-xs transition border border-pink-500/20 active:scale-95">
+                    🔊 TESTAR SOM (Clique para ativar)
+                </button>
+                
+                <p class="text-[10px] text-gray-400 leading-tight">
+                    Arrasta o dedo no ecrã para moveres a nave. Disparos automáticos!<br>
+                    <span class="text-pink-400 font-semibold">Nota iOS:</span> Se não ouvires som, desativa o botão de silêncio lateral do teu iPhone!
+                </p>
+            </div>
+        </div>
+
+        <!-- Tela de HUD do Jogo -->
+        <div id="hud" class="absolute top-0 left-0 w-full p-4 z-10 flex justify-between items-center pointer-events-none hidden">
+            <!-- Vidas (Corações) -->
+            <div class="flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+                <div id="hearts-container" class="flex gap-1 text-red-500 text-base">
+                    ❤️ ❤️ ❤️
+                </div>
+            </div>
+
+            <!-- Barra de Progresso / Distância -->
+            <div class="flex flex-col items-end w-1/2">
+                <div class="flex justify-between w-full text-[10px] text-gray-300 pixel-font mb-1">
+                    <span>PROGRESSO</span>
+                    <span id="hud-progress">0%</span>
+                </div>
+                <div class="w-full bg-gray-800 h-2.5 rounded-full overflow-hidden border border-white/10">
+                    <div id="hud-progress-bar" class="bg-gradient-to-r from-pink-500 to-red-500 h-full transition-all duration-100" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botão de Som no HUD -->
+        <button id="btn-sound-toggle" class="absolute bottom-4 right-4 z-10 p-3 bg-black/50 hover:bg-black/80 text-white rounded-full border border-white/20 transition-all pointer-events-auto hidden">
+            <svg id="sound-icon-on" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M12 18.75V5.25L7.75 9.5H4.5v5h3.25L12 18.75z" />
+            </svg>
+            <svg id="sound-icon-off" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+            </svg>
+        </button>
+
+        <!-- Canvas Principal de Gameplay -->
+        <canvas id="game-canvas" class="w-full h-full bg-[#04020a]"></canvas>
+
+        <!-- Tela de Game Over -->
+        <div id="screen-gameover" class="absolute inset-0 z-20 flex flex-col justify-center items-center p-6 bg-black/90 backdrop-blur-sm text-center hidden">
+            <div class="bg-[#120a1f] p-8 rounded-3xl border-2 border-red-500/30 max-w-xs flex flex-col items-center">
+                <div class="text-5xl mb-3">💥</div>
+                <h2 class="text-2xl font-bold text-red-500 pixel-font mb-4">FIM DE JOGO</h2>
+                <p class="text-gray-300 text-sm mb-6">A nave do Filipe sofreu avarias severas com os asteroides!</p>
+                <button id="btn-restart" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-2xl transition duration-200 shadow-md">
+                    Tentar novamente
+                </button>
+            </div>
+        </div>
+
+        <!-- Tela de Vitória Especial -->
+        <div id="screen-victory" class="absolute inset-0 z-20 flex flex-col justify-between p-6 bg-gradient-to-b from-[#1c0821] via-[#0b030f] to-[#120317] text-center hidden">
+            <div class="mt-8 flex flex-col items-center">
+                <div class="text-pink-500 text-5xl mb-2 animate-heart">❤️</div>
+                <p class="text-pink-400 pixel-font text-[10px] tracking-wider uppercase">Missão Cumprida com Sucesso!</p>
+                <h1 class="text-3xl font-extrabold tracking-tight text-white mt-1 uppercase">
+                    CONSEGUISTE!
+                </h1>
+            </div>
+
+            <!-- Avatar Comemorativo -->
+            <div class="flex flex-col items-center justify-center my-2">
+                <div class="p-3 bg-pink-500/20 rounded-2xl border-2 border-pink-500/40 relative">
+                    <canvas id="avatar-canvas-victory" width="128" height="128" class="w-28 h-28"></canvas>
+                    <span class="absolute -top-2 -right-2 text-2xl animate-bounce">✨</span>
+                </div>
+                <div class="mt-4 bg-pink-500/10 px-4 py-2 rounded-xl border border-pink-500/20 max-w-xs">
+                    <p class="text-xs text-pink-300 font-semibold uppercase tracking-wider">Prémio Desbloqueado 🏆</p>
+                    <p class="text-lg font-bold text-white mt-1">O Filipe venceu a gravidade e o espaço pelo teu amor!</p>
+                </div>
+            </div>
+
+            <!-- Mensagem de Feliz Dia dos Namorados -->
+            <div class="mb-6 flex flex-col gap-4 px-4 items-center">
+                <div class="bg-gradient-to-r from-red-600 via-pink-500 to-red-600 p-0.5 rounded-2xl w-full shadow-lg shadow-pink-500/20">
+                    <div class="bg-[#120317] rounded-2xl px-4 py-5">
+                        <h2 class="text-2xl font-black text-pink-400 pixel-font neon-text-pink animate-pulse">
+                            FELIZ DIA DOS NAMORADOS!
+                        </h2>
+                        <p class="text-sm text-gray-300 mt-3 leading-relaxed">
+                            O melhor copiloto que alguém poderia pedir atravessou o universo inteiro e provou que nenhum asteroide consegue fazer frente ao nosso amor! ❤️
+                        </p>
+                    </div>
+                </div>
+
+                <button id="btn-play-again" class="bg-gray-800 hover:bg-gray-700 text-white font-semibold py-3 px-8 rounded-xl text-xs transition duration-200">
+                    Jogar novamente 🚀
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- CONSTANTES DO SISTEMA E ÁUDIO ---
+        let audioMuted = false;
+        let audioCtx = null;
+
+        // Função para inicializar e desbloquear o áudio no iOS de forma segura
+        function initAudio() {
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                // Desbloqueia o estado suspenso do iOS Safari
+                if (audioCtx && audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+            } catch (e) {
+                console.error("Web Audio API não é suportada neste navegador.", e);
+            }
+        }
+
+        // Toca um som de teste curto para garantir o desbloqueio
+        function playTestSound() {
+            initAudio();
+            if (!audioCtx) return;
+
+            const now = audioCtx.currentTime;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(523.25, now); // Nota Dó
+            osc.frequency.exponentialRampToValueAtTime(880, now + 0.15); // Sobe para Lá
+            
+            gain.gain.setValueAtTime(0.15, now);
+            gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+            
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            osc.start(now);
+            osc.stop(now + 0.15);
+        }
+
+        // Função de som geral do jogo
+        function playSound(type) {
+            if (audioMuted) return;
+            initAudio();
+            if (!audioCtx || audioCtx.state === 'suspended') return;
+
+            const now = audioCtx.currentTime;
+
+            if (type === 'shoot') {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(800, now);
+                osc.frequency.exponentialRampToValueAtTime(150, now + 0.12);
+                gain.gain.setValueAtTime(0.08, now);
+                gain.gain.exponentialRampToValueAtTime(0.005, now + 0.12);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(now);
+                osc.stop(now + 0.12);
+            } 
+            else if (type === 'explosion') {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(130, now);
+                osc.frequency.exponentialRampToValueAtTime(10, now + 0.25);
+                gain.gain.setValueAtTime(0.18, now);
+                gain.gain.exponentialRampToValueAtTime(0.005, now + 0.25);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(now);
+                osc.stop(now + 0.25);
+            }
+            else if (type === 'hurt') {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(180, now);
+                osc.frequency.setValueAtTime(90, now + 0.08);
+                gain.gain.setValueAtTime(0.25, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.18);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(now);
+                osc.stop(now + 0.18);
+            }
+            else if (type === 'powerup') {
+                const notes = [261.63, 329.63, 392.00, 523.25]; // Arpejo de Dó Maior
+                notes.forEach((freq, idx) => {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, now + idx * 0.06);
+                    gain.gain.setValueAtTime(0.12, now + idx * 0.06);
+                    gain.gain.exponentialRampToValueAtTime(0.005, now + idx * 0.06 + 0.12);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now + idx * 0.06);
+                    osc.stop(now + idx * 0.06 + 0.12);
+                });
+            }
+            else if (type === 'victory') {
+                const melody = [523.25, 587.33, 659.25, 698.46, 783.99, 880.00, 987.77, 1046.50];
+                melody.forEach((freq, idx) => {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, now + idx * 0.1);
+                    gain.gain.setValueAtTime(0.08, now + idx * 0.1);
+                    gain.gain.exponentialRampToValueAtTime(0.005, now + idx * 0.1 + 0.18);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now + idx * 0.1);
+                    osc.stop(now + idx * 0.1 + 0.2);
+                });
+            }
+        }
+
+        // --- SPRITES DE PIXEL ART PERSONALIZADOS DO FILIPE ---
+        const FILIPE_PALETTE = {
+            '.': 'transparent',
+            'H': '#251a15', 
+            'S': '#fcd5b5', 
+            'G': '#111111', 
+            'W': '#ffffff', 
+            'R': '#e63946', 
+            'B': '#1a1a1d', 
+            'P': '#ffccd5'  
+        };
+
+        const FILIPE_SPRITE_GRID = [
+            "....HHHHHH......",
+            "...HHHHHHHH.....",
+            "..HHHHHHHHHH....",
+            "..HHHSSSSSSHH...",
+            ".HHSSSSSSSSSHH..",
+            ".HHSSGSSSGSSSH..",
+            ".HSSGWGSGWGSSH..",
+            ".HSSSSSSSSSSSH..",
+            ".HSSSPSSSPSSSH..",
+            ".HSSSSSSSHHSSH..",
+            "..HSSHHHHHHSSH..",
+            "...HHHHHHHHHH...",
+            "....BBRRRRBB....",
+            "...BBBBRRRRBB...",
+            "..BBBBBRRRRBBB..",
+            "..BBBBBBBBBBBB.."
+        ];
+
+        function renderPixelArt(canvas, matrix, palette, pixelScale = 8) {
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const sizeY = matrix.length;
+            const sizeX = matrix[0].length;
+            
+            const startX = Math.floor((canvas.width - (sizeX * pixelScale)) / 2);
+            const startY = Math.floor((canvas.height - (sizeY * pixelScale)) / 2);
+
+            for (let y = 0; y < sizeY; y++) {
+                for (let x = 0; x < sizeX; x++) {
+                    const char = matrix[y][x];
+                    const color = palette[char];
+                    if (color && color !== 'transparent') {
+                        ctx.fillStyle = color;
+                        ctx.fillRect(startX + (x * pixelScale), startY + (y * pixelScale), pixelScale, pixelScale);
+                    }
+                }
+            }
+        }
+
+        window.addEventListener('load', () => {
+            const avatarCanvas = document.getElementById('avatar-canvas');
+            const victoryCanvas = document.getElementById('avatar-canvas-victory');
+            renderPixelArt(avatarCanvas, FILIPE_SPRITE_GRID, FILIPE_PALETTE, 6);
+            renderPixelArt(victoryCanvas, FILIPE_SPRITE_GRID, FILIPE_PALETTE, 7);
+        });
+
+        // --- MOTOR DE JOGO ---
+        const canvas = document.getElementById('game-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            const container = document.getElementById('game-container');
+            canvas.width = container.clientWidth;
+            canvas.height = container.clientHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        let gameActive = false;
+        let distanceToGo = 1000; 
+        let distanceTraveled = 0;
+        let player = {
+            x: 0,
+            y: 0,
+            width: 32,
+            height: 48,
+            speed: 5,
+            hp: 3,
+            maxHp: 3,
+            invulnerable: false,
+            invulnerableTimer: 0
+        };
+
+        let isDragging = false;
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let shipStartX = 0;
+        let shipStartY = 0;
+
+        let stars = [];
+        let lasers = [];
+        let enemies = [];
+        let asteroids = [];
+        let powerups = [];
+        let particles = [];
+
+        let asteroidSpawnTimer = 0;
+        let enemySpawnTimer = 0;
+        let shootTimer = 0;
+
+        function initStars() {
+            stars = [];
+            for (let i = 0; i < 40; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 2 + 1,
+                    speed: Math.random() * 1.5 + 0.5
+                });
+            }
+        }
+
+        function getEventPos(e) {
+            if (e.touches && e.touches.length > 0) {
+                return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+            }
+            return { x: e.clientX, y: e.clientY };
+        }
+
+        // Interação de Touch e Clique também ativam/desbloqueiam áudio iOS de forma transparente
+        function onTouchStart(e) {
+            initAudio(); // Garante o desbloqueio no primeiro toque no ecrã de jogo
+            if (!gameActive) return;
+            const pos = getEventPos(e);
+            isDragging = true;
+            touchStartX = pos.x;
+            touchStartY = pos.y;
+            shipStartX = player.x;
+            shipStartY = player.y;
+        }
+
+        function onTouchMove(e) {
+            if (!gameActive || !isDragging) return;
+            const pos = getEventPos(e);
+            const dx = pos.x - touchStartX;
+            const dy = pos.y - touchStartY;
+
+            player.x = shipStartX + dx;
+            player.y = shipStartY + dy;
+
+            if (player.x < 0) player.x = 0;
+            if (player.x > canvas.width - player.width) player.x = canvas.width - player.width;
+            if (player.y < 100) player.y = 100; 
+            if (player.y > canvas.height - player.height) player.y = canvas.height - player.height;
+        }
+
+        function onTouchEnd() {
+            isDragging = false;
+        }
+
+        canvas.addEventListener('touchstart', onTouchStart, { passive: true });
+        canvas.addEventListener('touchmove', onTouchMove, { passive: true });
+        canvas.addEventListener('touchend', onTouchEnd, { passive: true });
+        canvas.addEventListener('mousedown', onTouchStart);
+        canvas.addEventListener('mousemove', onTouchMove);
+        window.addEventListener('mouseup', onTouchEnd);
+
+        function createExplosion(x, y, color = '#f39c12', count = 12) {
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: x,
+                    y: y,
+                    vx: (Math.random() - 0.5) * 6,
+                    vy: (Math.random() - 0.5) * 6,
+                    size: Math.random() * 4 + 2,
+                    color: color,
+                    life: 1.0,
+                    decay: Math.random() * 0.05 + 0.02
+                });
+            }
+        }
+
+        function resetGame() {
+            distanceTraveled = 0;
+            player.hp = player.maxHp;
+            player.x = canvas.width / 2 - player.width / 2;
+            player.y = canvas.height - 120;
+            player.invulnerable = false;
+            
+            lasers = [];
+            enemies = [];
+            asteroids = [];
+            powerups = [];
+            particles = [];
+            
+            asteroidSpawnTimer = 0;
+            enemySpawnTimer = 0;
+            shootTimer = 0;
+            
+            updateHUD();
+            initStars();
+        }
+
+        function updateHUD() {
+            const container = document.getElementById('hearts-container');
+            let heartString = '';
+            for (let i = 0; i < player.maxHp; i++) {
+                heartString += i < player.hp ? '❤️ ' : '🖤 ';
+            }
+            container.textContent = heartString;
+
+            const percent = Math.min(100, Math.floor((distanceTraveled / distanceToGo) * 100));
+            document.getElementById('hud-progress').textContent = `${percent}%`;
+            document.getElementById('hud-progress-bar').style.width = `${percent}%`;
+        }
+
+        function spawnAsteroid() {
+            const size = Math.random() * 30 + 15;
+            asteroids.push({
+                x: Math.random() * (canvas.width - size),
+                y: -size,
+                width: size,
+                height: size,
+                speed: Math.random() * 3 + 2,
+                rotation: 0,
+                rotSpeed: (Math.random() - 0.5) * 0.05
+            });
+        }
+
+        function spawnEnemy() {
+            enemies.push({
+                x: Math.random() * (canvas.width - 32),
+                y: -40,
+                width: 32,
+                height: 32,
+                speed: Math.random() * 1.5 + 1.5,
+                direction: Math.random() > 0.5 ? 1 : -1,
+                shootTimer: Math.random() * 60
+            });
+        }
+
+        function spawnPowerUp(x, y) {
+            if (Math.random() < 0.25) {
+                powerups.push({
+                    x: x,
+                    y: y,
+                    width: 20,
+                    height: 20,
+                    speed: 2
+                });
+            }
+        }
+
+        function updateGame() {
+            if (!gameActive) return;
+
+            distanceTraveled += 0.4;
+            updateHUD();
+
+            if (distanceTraveled >= distanceToGo) {
+                gameActive = false;
+                playSound('victory');
+                document.getElementById('hud').classList.add('hidden');
+                document.getElementById('screen-victory').classList.remove('hidden');
+                return;
+            }
+
+            stars.forEach(star => {
+                star.y += star.speed;
+                if (star.y > canvas.height) {
+                    star.y = 0;
+                    star.x = Math.random() * canvas.width;
+                }
+            });
+
+            if (player.invulnerable) {
+                player.invulnerableTimer--;
+                if (player.invulnerableTimer <= 0) {
+                    player.invulnerable = false;
+                }
+            }
+
+            shootTimer++;
+            if (shootTimer >= 15) {
+                lasers.push({
+                    x: player.x + player.width / 2 - 2,
+                    y: player.y - 10,
+                    width: 4,
+                    height: 12,
+                    speed: -8,
+                    fromPlayer: true
+                });
+                playSound('shoot');
+                shootTimer = 0;
+            }
+
+            for (let i = lasers.length - 1; i >= 0; i--) {
+                const laser = lasers[i];
+                laser.y += laser.speed;
+                if (laser.y < 0 || laser.y > canvas.height) {
+                    lasers.splice(i, 1);
+                }
+            }
+
+            asteroidSpawnTimer++;
+            if (asteroidSpawnTimer > 45) {
+                spawnAsteroid();
+                asteroidSpawnTimer = 0;
+            }
+
+            enemySpawnTimer++;
+            if (enemySpawnTimer > 120) {
+                spawnEnemy();
+                enemySpawnTimer = 0;
+            }
+
+            for (let i = asteroids.length - 1; i >= 0; i--) {
+                const ast = asteroids[i];
+                ast.y += ast.speed;
+                ast.rotation += ast.rotSpeed;
+
+                if (ast.y > canvas.height) {
+                    asteroids.splice(i, 1);
+                    continue;
+                }
+
+                for (let j = lasers.length - 1; j >= 0; j--) {
+                    const l = lasers[j];
+                    if (l.fromPlayer && checkCollision(l, ast)) {
+                        createExplosion(ast.x + ast.width/2, ast.y + ast.height/2, '#c8ccd0', 8);
+                        playSound('explosion');
+                        spawnPowerUp(ast.x, ast.y);
+                        asteroids.splice(i, 1);
+                        lasers.splice(j, 1);
+                        break;
+                    }
+                }
+            }
+
+            for (let i = enemies.length - 1; i >= 0; i--) {
+                const enemy = enemies[i];
+                enemy.y += enemy.speed;
+                enemy.x += enemy.direction * 1;
+                if (enemy.x < 0 || enemy.x > canvas.width - enemy.width) {
+                    enemy.direction *= -1;
+                }
+
+                if (enemy.y > canvas.height) {
+                    enemies.splice(i, 1);
+                    continue;
+                }
+
+                enemy.shootTimer++;
+                if (enemy.shootTimer > 80) {
+                    lasers.push({
+                        x: enemy.x + enemy.width / 2 - 2,
+                        y: enemy.y + enemy.height + 2,
+                        width: 4,
+                        height: 10,
+                        speed: 5,
+                        fromPlayer: false
+                    });
+                    enemy.shootTimer = 0;
+                }
+
+                for (let j = lasers.length - 1; j >= 0; j--) {
+                    const l = lasers[j];
+                    if (l.fromPlayer && checkCollision(l, enemy)) {
+                        createExplosion(enemy.x + enemy.width/2, enemy.y + enemy.height/2, '#ff3366', 15);
+                        playSound('explosion');
+                        spawnPowerUp(enemy.x, enemy.y);
+                        enemies.splice(i, 1);
+                        lasers.splice(j, 1);
+                        break;
+                    }
+                }
+            }
+
+            for (let i = powerups.length - 1; i >= 0; i--) {
+                const item = powerups[i];
+                item.y += item.speed;
+
+                if (item.y > canvas.height) {
+                    powerups.splice(i, 1);
+                    continue;
+                }
+
+                if (checkCollision(player, item)) {
+                    if (player.hp < player.maxHp) {
+                        player.hp++;
+                        playSound('powerup');
+                        updateHUD();
+                    }
+                    createExplosion(item.x + item.width/2, item.y + item.height/2, '#ff3366', 10);
+                    powerups.splice(i, 1);
+                }
+            }
+
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.life -= p.decay;
+                if (p.life <= 0) {
+                    particles.splice(i, 1);
+                }
+            }
+
+            if (!player.invulnerable) {
+                for (let i = asteroids.length - 1; i >= 0; i--) {
+                    if (checkCollision(player, asteroids[i])) {
+                        damagePlayer();
+                        createExplosion(asteroids[i].x + asteroids[i].width/2, asteroids[i].y + asteroids[i].height/2, '#95a5a6');
+                        asteroids.splice(i, 1);
+                        break;
+                    }
+                }
+
+                for (let i = lasers.length - 1; i >= 0; i--) {
+                    const l = lasers[i];
+                    if (!l.fromPlayer && checkCollision(player, l)) {
+                        damagePlayer();
+                        lasers.splice(i, 1);
+                        break;
+                    }
+                }
+
+                for (let i = enemies.length - 1; i >= 0; i--) {
+                    if (checkCollision(player, enemies[i])) {
+                        damagePlayer();
+                        createExplosion(enemies[i].x + enemies[i].width/2, enemies[i].y + enemies[i].height/2, '#e74c3c');
+                        enemies.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+        }
+
+        function damagePlayer() {
+            player.hp--;
+            playSound('hurt');
+            updateHUD();
+
+            if (player.hp <= 0) {
+                gameActive = false;
+                createExplosion(player.x + player.width/2, player.y + player.height/2, '#e74c3c', 30);
+                playSound('explosion');
+                document.getElementById('hud').classList.add('hidden');
+                document.getElementById('screen-gameover').classList.remove('hidden');
+            } else {
+                player.invulnerable = true;
+                player.invulnerableTimer = 60; 
+            }
+        }
+
+        function checkCollision(rect1, rect2) {
+            return rect1.x < rect2.x + rect2.width &&
+                   rect1.x + rect1.width > rect2.x &&
+                   rect1.y < rect2.y + rect2.height &&
+                   rect1.y + rect1.height > rect2.y;
+        }
+
+        function renderGame() {
+            ctx.fillStyle = '#080512';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#ffffff';
+            stars.forEach(star => {
+                ctx.globalAlpha = star.speed / 2; 
+                ctx.fillRect(star.x, star.y, star.size, star.size);
+            });
+            ctx.globalAlpha = 1.0;
+
+            particles.forEach(p => {
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = p.life;
+                ctx.fillRect(p.x, p.y, p.size, p.size);
+            });
+            ctx.globalAlpha = 1.0;
+
+            lasers.forEach(laser => {
+                ctx.fillStyle = laser.fromPlayer ? '#00f6ff' : '#ff0055';
+                ctx.shadowColor = laser.fromPlayer ? '#00f6ff' : '#ff0055';
+                ctx.shadowBlur = 8;
+                ctx.fillRect(laser.x, laser.y, laser.width, laser.height);
+                ctx.shadowBlur = 0; 
+            });
+
+            ctx.fillStyle = '#655e7a';
+            ctx.strokeStyle = '#3e394f';
+            ctx.lineWidth = 2;
+            asteroids.forEach(ast => {
+                ctx.save();
+                ctx.translate(ast.x + ast.width / 2, ast.y + ast.height / 2);
+                ctx.rotate(ast.rotation);
+                
+                ctx.beginPath();
+                ctx.moveTo(-ast.width / 2, -ast.height / 3);
+                ctx.lineTo(-ast.width / 3, -ast.height / 2);
+                ctx.lineTo(ast.width / 3, -ast.height / 2);
+                ctx.lineTo(ast.width / 2, -ast.height / 4);
+                ctx.lineTo(ast.width / 2, ast.height / 3);
+                ctx.lineTo(ast.width / 4, ast.height / 2);
+                ctx.lineTo(-ast.width / 3, ast.height / 2);
+                ctx.lineTo(-ast.width / 2, ast.height / 4);
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+                ctx.restore();
+            });
+
+            enemies.forEach(enemy => {
+                ctx.fillStyle = '#ff1a55';
+                ctx.strokeStyle = '#4a001a';
+                ctx.lineWidth = 2;
+                
+                ctx.beginPath();
+                ctx.moveTo(enemy.x + enemy.width / 2, enemy.y + enemy.height);
+                ctx.lineTo(enemy.x, enemy.y);
+                ctx.lineTo(enemy.x + enemy.width / 4, enemy.y + enemy.height / 3);
+                ctx.lineTo(enemy.x + enemy.width * 0.75, enemy.y + enemy.height / 3);
+                ctx.lineTo(enemy.x + enemy.width, enemy.y);
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+
+                ctx.fillStyle = '#00ffff';
+                ctx.fillRect(enemy.x + enemy.width / 2 - 4, enemy.y + enemy.height / 3, 8, 5);
+            });
+
+            powerups.forEach(item => {
+                ctx.fillStyle = '#ff3366';
+                const px = item.width / 5;
+                const heartGrid = [
+                    ".X.X.",
+                    "XXXXX",
+                    "XXXXX",
+                    ".XXX.",
+                    "..X.."
+                ];
+                for(let r=0; r<5; r++) {
+                    for(let c=0; c<5; c++) {
+                        if (heartGrid[r][c] === 'X') {
+                            ctx.fillRect(item.x + c * px, item.y + r * px, px, px);
+                        }
+                    }
+                }
+            });
+
+            if (!player.invulnerable || Math.floor(Date.now() / 100) % 2 === 0) {
+                ctx.fillStyle = '#9b5de5'; 
+                ctx.strokeStyle = '#480ca8';
+                ctx.lineWidth = 2;
+
+                ctx.beginPath();
+                ctx.moveTo(player.x + player.width / 2, player.y);
+                ctx.lineTo(player.x, player.y + player.height * 0.85);
+                ctx.lineTo(player.x + player.width / 4, player.y + player.height * 0.7);
+                ctx.lineTo(player.x + player.width * 0.75, player.y + player.height * 0.7);
+                ctx.lineTo(player.x + player.width, player.y + player.height * 0.85);
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+
+                ctx.fillStyle = Math.random() > 0.5 ? '#f39c12' : '#e67e22';
+                ctx.fillRect(player.x + player.width / 4 - 2, player.y + player.height * 0.75, 4, 10 + Math.random() * 6);
+                ctx.fillRect(player.x + player.width * 0.75 - 2, player.y + player.height * 0.75, 4, 10 + Math.random() * 6);
+
+                ctx.fillStyle = '#00ffff';
+                ctx.fillRect(player.x + player.width / 2 - 4, player.y + player.height * 0.25, 8, 12);
+
+                ctx.save();
+                ctx.translate(player.x + player.width / 2 - 8, player.y + player.height * 0.25);
+                const miniScale = 1; 
+                for (let y = 0; y < 16; y++) {
+                    for (let x = 0; x < 16; x++) {
+                        const char = FILIPE_SPRITE_GRID[y][x];
+                        const color = FILIPE_PALETTE[char];
+                        if (color && color !== 'transparent') {
+                            ctx.fillStyle = color;
+                            ctx.fillRect(x * miniScale, y * miniScale, miniScale, miniScale);
+                        }
+                    }
+                }
+                ctx.restore();
+            }
+        }
+
+        function gameLoop() {
+            updateGame();
+            renderGame();
+            if (gameActive) {
+                requestAnimationFrame(gameLoop);
+            }
+        }
+
+        // --- SISTEMAS DE INTERFACE ---
+
+        // Testar Som Manualmente para garantir a ativação da Web Audio API
+        document.getElementById('btn-test-sound').addEventListener('click', (e) => {
+            playTestSound();
+            const btn = e.currentTarget;
+            btn.textContent = "🔊 SOM ATIVADO COM SUCESSO!";
+            btn.classList.remove('bg-slate-800/80', 'text-pink-300');
+            btn.classList.add('bg-pink-500/20', 'text-white', 'border-pink-500');
+            setTimeout(() => {
+                btn.textContent = "🔊 TESTAR SOM NOVAMENTE";
+            }, 2000);
+        });
+
+        document.getElementById('btn-start').addEventListener('click', () => {
+            initAudio();
+            document.getElementById('screen-start').classList.add('hidden');
+            document.getElementById('hud').classList.remove('hidden');
+            document.getElementById('btn-sound-toggle').classList.remove('hidden');
+            
+            gameActive = true;
+            resetGame();
+            gameLoop();
+        });
+
+        document.getElementById('btn-restart').addEventListener('click', () => {
+            initAudio();
+            document.getElementById('screen-gameover').classList.add('hidden');
+            document.getElementById('hud').classList.remove('hidden');
+            
+            gameActive = true;
+            resetGame();
+            gameLoop();
+        });
+
+        document.getElementById('btn-play-again').addEventListener('click', () => {
+            initAudio();
+            document.getElementById('screen-victory').classList.add('hidden');
+            document.getElementById('hud').classList.remove('hidden');
+            
+            gameActive = true;
+            resetGame();
+            gameLoop();
+        });
+
+        document.getElementById('btn-sound-toggle').addEventListener('click', () => {
+            audioMuted = !audioMuted;
+            document.getElementById('sound-icon-on').classList.toggle('hidden', audioMuted);
+            document.getElementById('sound-icon-off').classList.toggle('hidden', !audioMuted);
+        });
+
+        initStars();
+        renderGame();
+    </script>
+</body>
+</html>
